@@ -374,11 +374,11 @@ img{ max-width:100%; display:block; }
   </button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home"         class="nav-link active">Home</a></li>
-    <li><a href="#about"        class="nav-link">About</a></li>
-    <li><a href="#skills"       class="nav-link">Skills</a></li>
-    <li><a href="#education"    class="nav-link">Education</a></li>
+    <li><a href="#about"        class="nav-link">À propos</a></li>
+    <li><a href="#skills"       class="nav-link">Compétences</a></li>
+    <li><a href="#education"    class="nav-link">Expériences pro.</a></li>
     <li><a href="#portfolio"    class="nav-link">Portfolio</a></li>
-    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+    <li><a href="#achievements" class="nav-link">Éducation</a></li>
     <li><a href="#contact"      class="nav-link">Contact</a></li>
   </ul>
 </nav>
@@ -389,15 +389,15 @@ img{ max-width:100%; display:block; }
   <div class="hero-content">
     <h1 class="hero-name">Franck RAHON</h1>
     <div class="hero-title">
-      <span class="hero-prefix">I am a </span>
+      <span class="hero-prefix">Je suis un </span>
       <span class="hero-role" id="roleTyper"></span><span class="typer-cursor">|</span>
     </div>
-    <p class="hero-tagline">Building things for the web</p>
+    <p class="hero-tagline">De la donnée brute à la décision métier</p>
     <div class="hero-social">
-      <a href="https://github.com/falendrir" target="https://github.com/falendrir" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="www.linkedin.com/in/franck-rahon" target="www.linkedin.com/in/franck-rahon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/falendrir" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="www.linkedin.com/in/franck-rahon" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       <!-- a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a-->
-      <a href="franck.rahon@gmail.com" target="franck.rahon@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="franck.rahon@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
     </div>
     <a href="#about" class="scroll-arrow" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
   </div>
@@ -406,23 +406,26 @@ img{ max-width:100%; display:block; }
 <!-- ═══ ABOUT ═══ -->
 <section id="about" class="section section--alt">
   <div class="container">
-    <h2 class="section-title">About Me</h2>
+    <h2 class="section-title">À propos de moi</h2>
     <div class="about-grid">
       <div class="about-image-wrap">
         <div class="about-image-frame">
           <!-- Inline SVG placeholder — replace src with your photo URL -->
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232c3344'/%3E%3Cstop offset='1' stop-color='%231e2330'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='260' height='260' fill='url(%23bg)'/%3E%3Ccircle cx='130' cy='95' r='52' fill='%233a4258'/%3E%3Cellipse cx='130' cy='230' rx='78' ry='60' fill='%233a4258'/%3E%3Ccircle cx='130' cy='95' r='52' fill='none' stroke='%23ff9800' stroke-width='2' stroke-dasharray='8 4' opacity='.4'/%3E%3C/svg%3E" alt="Profile" class="about-image" />
+          <img src="assets/FR.jpg" alt="Profile" class="about-image" />
         </div>
       </div>
       <div class="about-text">
-        <p>Hello! I'm <strong>Franck</strong>, a passionate developer who loves turning ideas into reality through code. With a background in computer science and a keen eye for design, I strive to build elegant, user-friendly solutions.</p>
-        <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying a cup of coffee while reading tech articles.</p>
+        <p>Salut! Moi c'est <strong>Franck</strong>, analyste de données junior spécialisé en données financières, avec une
+          expérience en comptabilité et reporting financier. Compétences en Excel avancé, SQL et Python pour
+          l’automatisation des reportings, l’analyse des KPI et l’optimisation des processus décisionnels.
+          Capacité à exploiter des ensembles de données complexes pour améliorer la performance opérationnelle et
+          soutenir les équipes métiers.</p>
         <div class="about-info">
           <div class="info-item"><i class="fas fa-map-marker-alt"></i> Tremblay-en-France, France</div>
           <div class="info-item"><i class="fas fa-envelope"></i> franck.rahon@gmail.com</div>
-          <div class="info-item"><i class="fas fa-briefcase"></i> Open to opportunities</div>
+          <div class="info-item"><i class="fas fa-briefcase"></i> Ouvert aux opportunités</div>
         </div>
-        <a href="#" download class="btn btn--primary"><i class="fas fa-download"></i> Download CV</a>
+        <a href="assets/Franck Rahon - CV.pdf" download class="btn btn--primary"><i class="fas fa-download"></i> Télécharger le CV</a>
       </div>
     </div>
   </div>
@@ -431,14 +434,14 @@ img{ max-width:100%; display:block; }
 <!-- ═══ SKILLS ═══ -->
 <section id="skills" class="section">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title">Compétences</h2>
     <div class="skills-grid">
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-html5"></i></div><h3>HTML / CSS</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div><span class="skill-percent">90%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-js"></i></div><h3>JavaScript</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div><span class="skill-percent">85%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-react"></i></div><h3>React</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div><span class="skill-percent">78%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-node"></i></div><h3>Node.js</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="72"></div></div><span class="skill-percent">72%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-python"></i></div><h3>Python</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div><span class="skill-percent">80%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fas fa-database"></i></div><h3>Databases</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="70"></div></div><span class="skill-percent">70%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-regular fa-file-code"></i></div><h3>SQL</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div><span class="skill-percent">65%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-python"></i></div><h3>Python</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="50"></div></div><span class="skill-percent">50%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fas fa-database"></i></div><h3>Databases</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="40"></div></div><span class="skill-percent">40%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-solid fa-chart-simple"></i></div><h3>Visualisation</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div><span class="skill-percent">65%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-github"></i></div><h3>GitHub</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="55"></div></div><span class="skill-percent">55%</span></div>
+      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-solid fa-file-excel"></i></div><h3>Tableur</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div><span class="skill-percent">75%</span></div>
     </div>
   </div>
 </section>
@@ -446,24 +449,49 @@ img{ max-width:100%; display:block; }
 <!-- ═══ EDUCATION ═══ -->
 <section id="education" class="section section--alt">
   <div class="container">
-    <h2 class="section-title">Education</h2>
+    <h2 class="section-title">Expériences professionnelles</h2>
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <span class="timeline-date">2020 – 2024</span>
-          <h3>Bachelor of Computer Science</h3>
-          <p class="timeline-place">University Name, City</p>
-          <p>Studied software engineering with a focus on web technologies, algorithms, and system design.</p>
+          <span class="timeline-date">06/2024 - 09/2025</span>
+          <h3>Customer Care - Support client</h3>
+          <p class="timeline-place">FINTHESIS - Logiciel SaaS, Lyon</p>
+          <ul class="timeline-place">
+            <li>Gestion des demandes clients via chatbot et outils de support.</li>
+            <li>Signalement et suivi des bugs en collaboration avec les équipes techniques (QA, développement produit).</li>
+            <li>Tests fonctionnels avant déploiement des nouvelles fonctionnalités.</li>
+            <li>Création de notifications et tutoriels pour accompagner les utilisateurs lors des mises à jour produit.</li>
+          </ul>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-card">
-          <span class="timeline-date">2018 – 2020</span>
-          <h3>Higher Secondary</h3>
-          <p class="timeline-place">School Name, City</p>
-          <p>Completed studies with a specialisation in mathematics and computer science.</p>
+          <span class="timeline-date">07/2022 – 06/2024</span>
+          <h3>Responsable IT</h3>
+          <p class="timeline-place">AGK - Cabinet comptable, Paris</p>
+          <ul class="timeline-place">
+            <li>Gestion du parc informatique et des outils numériques du cabinet</li>
+            <li>Supervision des sauvegardes serveur.</li>
+            <li>Déploiement de logiciels métiers et accompagnement des utilisateurs.</li>
+            <li>Développement de modèles Excel automatisés.</li>
+            <li>Assistance technique et résolution d’incidents informatiques.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">10/2018 – 06/2024</span>
+          <h3>Collaborateur confirmé</h3>
+          <p class="timeline-place">AGK - Cabinet comptable, Paris</p>
+          <ul class="timeline-place">
+            <li>Saisie des opérations comptables.</li>
+            <li>Préparation des déclarations fiscales (TVA, impôt sur les sociétés, CFE, etc.).</li>
+            <li>Saisie des données pour les clôtures mensuelles et annuelles.</li>
+            <li>Préparation du dossier de déclaration fiscale.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -475,29 +503,29 @@ img{ max-width:100%; display:block; }
   <div class="container">
     <h2 class="section-title">Portfolio</h2>
     <div class="portfolio-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="web">Web</button>
-      <button class="filter-btn" data-filter="app">App</button>
-      <button class="filter-btn" data-filter="tool">Tool</button>
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <!--button class="filter-btn" data-filter="ml">Machine Learning</button-->
+      <!--button class="filter-btn" data-filter="app">App</button-->
+      <!--button class="filter-btn" data-filter="tool">Tool</button-->
     </div>
     <div class="portfolio-grid" id="portfolioGrid">
 
-      <div class="project-card" data-tilt data-category="web">
+      <div class="project-card" data-tilt data-category="ml">
         <div class="project-img">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='90' cy='45' r='25' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='310' cy='155' r='33' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP1%3C/text%3E%3C/svg%3E" alt="Project 1" />
+          <img src="assets/Accueil.png" alt="Tsunami" />
           <div class="project-overlay">
-            <a href="#" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="#" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
+            <a href="https://lookerstudio.google.com/u/0/reporting/b71bf52d-cc0b-4869-bf8b-66f0d56225fd" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
+            <a href="https://github.com/falendrir/Tsunami" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
           </div>
         </div>
         <div class="project-info">
-          <h3>E-Commerce Platform</h3>
-          <p>A full-stack online store with cart, authentication, and payment integration.</p>
-          <div class="project-tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+          <h3>Tsunami</h3>
+          <p>Analyse Data + Dashboard + Machine Learning pour identifier le prochain manga à adapter en animé.</p>
+          <div class="project-tags"><span>BigQuery</span><span>DBT</span><span>Looker</span><span>Python</span></div>
         </div>
       </div>
 
-      <div class="project-card" data-tilt data-category="app">
+      <!--div class="project-card" data-tilt data-category="app">
         <div class="project-img">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='130' cy='60' r='30' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='280' cy='145' r='28' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP2%3C/text%3E%3C/svg%3E" alt="Project 2" />
           <div class="project-overlay">
@@ -510,9 +538,9 @@ img{ max-width:100%; display:block; }
           <p>Real-time chat application powered by machine learning NLP models.</p>
           <div class="project-tags"><span>Python</span><span>Flask</span><span>WebSocket</span></div>
         </div>
-      </div>
+      </div-->
 
-      <div class="project-card" data-tilt data-category="tool">
+      <!--div class="project-card" data-tilt data-category="tool">
         <div class="project-img">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='170' cy='50' r='35' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='250' cy='140' r='22' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP3%3C/text%3E%3C/svg%3E" alt="Project 3" />
           <div class="project-overlay">
@@ -525,9 +553,9 @@ img{ max-width:100%; display:block; }
           <p>A lightweight URL shortening service with analytics dashboard.</p>
           <div class="project-tags"><span>Vue.js</span><span>Express</span><span>Redis</span></div>
         </div>
-      </div>
+      </div-->
 
-      <div class="project-card" data-tilt data-category="web">
+      <!--div class="project-card" data-tilt data-category="web">
         <div class="project-img">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='60' cy='70' r='28' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='340' cy='130' r='38' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP4%3C/text%3E%3C/svg%3E" alt="Project 4" />
           <div class="project-overlay">
@@ -540,9 +568,9 @@ img{ max-width:100%; display:block; }
           <p>Centralised analytics dashboard pulling data from multiple social APIs.</p>
           <div class="project-tags"><span>React</span><span>Chart.js</span><span>REST API</span></div>
         </div>
-      </div>
+      </div-->
 
-      <div class="project-card" data-tilt data-category="tool">
+      <!--div class="project-card" data-tilt data-category="tool">
         <div class="project-img">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='100' cy='55' r='22' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='300' cy='150' r='30' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP5%3C/text%3E%3C/svg%3E" alt="Project 5" />
           <div class="project-overlay">
@@ -555,9 +583,9 @@ img{ max-width:100%; display:block; }
           <p>Live-preview markdown editor with syntax highlighting and export options.</p>
           <div class="project-tags"><span>TypeScript</span><span>Electron</span><span>CodeMirror</span></div>
         </div>
-      </div>
+      </div-->
 
-      <div class="project-card" data-tilt data-category="app">
+      <!--div class="project-card" data-tilt data-category="app">
         <div class="project-img">
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='140' cy='65' r='32' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='270' cy='140' r='26' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP6%3C/text%3E%3C/svg%3E" alt="Project 6" />
           <div class="project-overlay">
@@ -570,21 +598,44 @@ img{ max-width:100%; display:block; }
           <p>Beautiful weather application with geolocation and 7-day forecasts.</p>
           <div class="project-tags"><span>React Native</span><span>OpenWeather</span><span>GPS</span></div>
         </div>
-      </div>
+      </div-->
 
     </div>
   </div>
 </section>
 
-<!-- ═══ ACHIEVEMENTS ═══ -->
+<!-- ═══ EDUCATION ═══ -->
 <section id="achievements" class="section section--alt">
   <div class="container">
-    <h2 class="section-title">Achievements</h2>
-    <div class="achievement-grid">
-      <div class="achievement-card" data-tilt><div class="achievement-icon"><i class="fas fa-trophy"></i></div><h3>Hackathon Winner</h3><p>1st place — Regional Hackathon 2023</p></div>
-      <div class="achievement-card" data-tilt><div class="achievement-icon"><i class="fas fa-medal"></i></div><h3>Hacktoberfest 2023</h3><p>Completed 4 pull requests in open-source projects</p></div>
-      <div class="achievement-card" data-tilt><div class="achievement-icon"><i class="fas fa-star"></i></div><h3>HackerRank Gold</h3><p>Achieved Gold badge in JavaScript challenges</p></div>
-      <div class="achievement-card" data-tilt><div class="achievement-icon"><i class="fas fa-certificate"></i></div><h3>Google Cloud Certified</h3><p>Associate Cloud Engineer certification</p></div>
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2025 – 2025</span>
+          <h3>Concepteur développeur en intelligence artificielle et analyse big data - Niveau 6</h3>
+          <p class="timeline-place">LE WAGON, Paris</p>
+          <p>Bootcamp intensif Data Science (9 semaines) – Python, SQL, Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn ; collaboration avec Git et DBT.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2016 – 2017</span>
+          <h3>Business entreprenariat international</h3>
+          <p class="timeline-place">UNIVERSITÉ LAVAL, Quebec</p>
+          <p>Entrepreneur et entrepreneuriat, apprendre à entreprendre, réaliser son business plan, séminaire en entrepreneuriat, le monde des affaires en Amérique du Nord.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2016 – 2017</span>
+          <h3>Bachelor : Business and management</h3>
+          <p class="timeline-place">INSTITUT SUP. DE GESTION, Toulouse</p>
+          <p>Année tournée vers l'international avec un parcours mixte : 50% France, 50% international.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -595,18 +646,34 @@ img{ max-width:100%; display:block; }
     <h2 class="section-title">Contact</h2>
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><p>Tremblay-en-France, France</p></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Localisation</h4><p>Tremblay-en-France, France</p></div></div>
         <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p><a href="mailto:you@email.com">franck.rahon@gmail.com</a></p></div></div>
-        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><p>+33 6 42 29 52 99</p></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Téléphone</h4><p>+33 6 42 29 52 99</p></div></div>
       </div>
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="5d850cc3-e25a-41fb-b4b2-5835a6621f87">
+
         <div class="form-row">
-          <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required /></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="Your mail" required /></div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" name="name" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@email.com" required />
+          </div>
         </div>
-        <div class="form-group"><label>Subject</label><input type="text" placeholder="How can I help?" required /></div>
-        <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Your message…" required></textarea></div>
-        <button type="submit" class="btn btn--primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+        <div class="form-group">
+          <label>Sujet</label>
+          <input type="text" name="subject" placeholder="Comment puis-je vous aider?" required />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="5" placeholder="Votre message…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">
+          <i class="fas fa-paper-plane"></i> Envoie du message
+        </button>
       </form>
     </div>
   </div>
@@ -729,7 +796,7 @@ img{ max-width:100%; display:block; }
 
   // Role typer
   (function(){
-    var roles=['Developer','Designer','Problem Solver','Creator','Innovator'];
+    var roles=['Data analyst','Financial Data Analyst','Data & BI Analyst', 'Data Analyst (Python, Excel, SQL)','Analytics Engineer'];
     var el=document.getElementById('roleTyper');
     var ri=0,ci=0,del=false,delay=120;
     function type(){
@@ -793,7 +860,7 @@ img{ max-width:100%; display:block; }
   })();
 
   // Contact form demo
-  document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('Message envoyé ! (Demo — connectez un backend ou Formspree)');this.reset();});
+
 })();
 </script>
 </body>
