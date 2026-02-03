@@ -1,96 +1,107 @@
-# Personal Portfolio Template
+# Franck RAHON — Personal Portfolio
 
-A dark-themed personal portfolio template inspired by [JayantGoel001's portfolio](https://github.com/JayantGoel001/JayantGoel001.github.io). Built with pure **HTML5, CSS3 & vanilla JavaScript** — zero build step required. Deploy instantly on GitHub Pages.
+Portfolio personnel de **Franck RAHON**, Data Analyst spécialisé en données financières.
 
-## Features
+[![GitHub Pages](https://img.shields.io/badge/Hébergé-GitHub%20Pages-blue?style=flat&logo=github)](https://falendrir.github.io)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![HTML5](https://img.shields.io/badge/-HTML5-E34F32?style=flat&logo=html5&logoColor=white)](https://www.w3.org/TR/html5/)
+[![CSS3](https://img.shields.io/badge/-CSS3-264CE4?style=flat&logo=css3&logoColor=white)](https://www.w3.org/TR/CSS/)
+[![JavaScript](https://img.shields.io/badge/-JavaScript-F0AD4E?style=flat&logo=javascript&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-- 🌙 Dark Gunmetal theme with Orange accent
-- ✨ Splash loader with dual animated rings
-- 🎆 Interactive particle background (mouse-reactive)
-- 🃏 3D tilt effect on cards (vanilla-tilt)
-- 📊 Animated skill progress bars
-- 📜 Scroll-reveal animations (IntersectionObserver)
-- 🏷️ Portfolio filter by category
-- 📱 Fully responsive & mobile-friendly
-- ⚡ No dependencies / no build step — works as static files
+---
 
-## Sections
+## 🎯 Demo
+
+👉 [falendrir.github.io](https://falendrir.github.io)
+
+---
+
+## 📖 Sections
 
 | Section | Description |
 |---|---|
-| **Home** | Hero with particles, role typer, social links |
-| **About** | Profile photo, bio, info badges, CV download |
-| **Skills** | Cards with animated progress bars |
-| **Education** | Vertical timeline |
-| **Portfolio** | Filterable project cards with hover overlay |
-| **Achievements** | Award/badge cards |
-| **Contact** | Info + form (connect to Formspree or your backend) |
+| **Accueil** | Hero avec particules interactives et typer de rôles |
+| **À propos** | Photo, bio, infos de contact et téléchargement du CV |
+| **Compétences** | Cartes avec barres de progression animées (SQL, Python, Excel…) |
+| **Expériences pro.** | Timeline verticale des postes occupés |
+| **Portfolio** | Projets avec filtres par catégorie (Tsunami…) |
+| **Éducation** | Parcours académique (Le Wagon, Université Laval, ISG) |
+| **Contact** | Formulaire connecté à Web3Forms + coordonnées |
 
-## 🚀 Deploy on GitHub Pages
+---
 
-1. **Fork / clone** this repo into a repository named `<your-username>.github.io`
-2. Go to **Settings → Pages → Source: `main` branch, `/ (root)` folder** → Save.
-3. Your site will be live at `https://<your-username>.github.io/`
+## 🛠️ Technologies utilisées
 
-> No build step, no npm install. Just push and go.
+- **HTML5 / CSS3** — structure et styles (100% vanilla, aucun framework CSS)
+- **JavaScript** — logique client (particules, tilt 3D, typer, scroll-reveal, filtres)
+- **Google Fonts** — polices *Black Ops One* et *Rajdhani*
+- **Font Awesome 6** — icônes
+- **Web3Forms** — réception des messages du formulaire de contact (gratuit)
 
-## 📁 File Structure
+---
+
+## 📁 Structure du projet
 
 ```
-├── index.html              ← Main page (edit content here)
-├── css/
-│   └── style.css           ← All styles (theme variables at the top)
-├── js/
-│   ├── main.js             ← App logic (typer, scroll-reveal, filters)
-│   ├── particles.js        ← Canvas particle system
-│   └── vanilla-tilt.js     ← 3D card tilt effect
-└── assets/
-    ├── favicon.svg         ← Site favicon
-    ├── profile.svg         ← Replace with your photo
-    └── project1–6.svg      ← Replace with project screenshots
+.
+├── index.html          ← Fichier unique : HTML, CSS et JS inlinés
+├── assets/
+│   ├── FR.jpg          ← Photo de profil
+│   ├── Accueil.png     ← Image du projet Tsunami
+│   └── Franck Rahon - CV.pdf   ← CV téléchargeable
+└── README.md           ← Ce fichier
 ```
 
-## ✏️ Customisation Guide
+> ⚡ Tout le CSS et le JavaScript sont inlinés dans `index.html`.  
+> Aucune dépendance externe à installer — juste pousser sur GitHub Pages.
 
-### 1. Your Info
-Open `index.html` and search-replace the placeholder text:
-- **Your Name** → your actual name
-- **you@email.com** → your email
-- **Location, Country** → your city
-- Social links → update `href` attributes
+---
 
-### 2. Theme Colors
-Edit CSS variables at the top of `css/style.css`:
-```css
---clr-bg:        #242a35;   /* Main background */
---clr-accent:    #ff9800;   /* Accent color     */
---clr-card:      #2c3344;   /* Card background  */
-```
+## 🚀 Déploiement sur GitHub Pages
 
-### 3. Profile Photo
-Replace `assets/profile.svg` with your photo (`profile.jpg` or `profile.png`) and update the `<img src>` in the About section.
+1. **Cloner** le dépôt :
+   ```bash
+   git clone https://github.com/falendrir/falendrir.github.io.git
+   cd falendrir.github.io
+   ```
 
-### 4. Project Cards
-Each `.project-card` in the Portfolio section has:
-- `data-category="web|app|tool"` — for the filter buttons
-- An image, title, description, and tech tags
-- Links to live demo and source code
+2. Modifier le contenu dans `index.html` selon ses besoins.
 
-### 5. Skills
-Each `.skill-card` has a percentage set via `style="width: 85%"` on the `.skill-bar` and a matching `.skill-percent` label. Adjust as needed.
+3. **Pousser** les changements :
+   ```bash
+   git add .
+   git commit -m "mise à jour du portfolio"
+   git push origin main
+   ```
 
-### 6. Contact Form
-The form currently shows a demo alert. Connect it to a backend:
-- **Formspree**: Add `action="https://formspree.io/f/YOUR_ID"` and `method="POST"` to the `<form>`, then remove the JS `submit` listener.
-- **Netlify Forms**: Add `netlify` attribute to `<form>`.
-- **Custom backend**: POST to your API endpoint.
+4. Le site est automatiquement mis à jour à :  
+   👉 `https://falendrir.github.io`
 
-### 7. CV Download
-Replace the `<a href="#" download>` in the About section with a link to your CV PDF:
-```html
-<a href="assets/cv.pdf" download class="btn btn--primary">…</a>
-```
+---
 
-## License
+## ✏️ Personnalisation rapide
 
-MIT — feel free to use and adapt for personal projects.
+| Quoi modifier | Où dans `index.html` |
+|---|---|
+| Nom, prénom | Chercher `Franck RAHON` |
+| Photo de profil | Attribut `src` dans la section `ABOUT` |
+| CV téléchargeable | Attribut `href` du bouton "Télécharger le CV" |
+| Rôles du typer | Tableau `roles` dans la section JS `Role typer` |
+| Compétences | Bloc `SKILLS` — modifier l'icône, le nom et `data-width` |
+| Projets | Bloc `PORTFOLIO` — décommenter les cartes et mettre à jour |
+| Couleur d'accent | Variable CSS `--clr-accent` (par défaut `#ff9800`) |
+| Clé Web3Forms | Champ `hidden` `access_key` dans le formulaire |
+
+---
+
+## 📬 Formulaire de contact
+
+Le formulaire est connecté à **[Web3Forms](https://web3forms.com)** (plan gratuit, illimité).  
+Les messages sont directement envoyés à l'adresse email associée à la clé API.
+
+---
+
+## 📝 License
+
+Ce projet est sous licence **MIT**.  
+© 2025 Franck RAHON
