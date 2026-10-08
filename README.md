@@ -48,6 +48,7 @@ Portfolio personnel de **Franck RAHON**, Data Analyst spécialisé en données f
 ├── assets/
 │   ├── FR.jpg          ← Photo de profil
 │   ├── Accueil.png     ← Image du projet Tsunami
+│   ├── og-image.jpg    ← Image d’aperçu (partage LinkedIn, 1200×630)
 │   └── Franck Rahon - CV.pdf   ← CV téléchargeable
 └── README.md           ← Ce fichier
 ```
