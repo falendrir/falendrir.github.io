@@ -30,862 +30,305 @@
 <meta name="twitter:image"       content="https://falendrir.github.io/assets/og-image.jpg" />
 
 <!-- Favicon inline SVG -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23242a35'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='15' fill='%23ff9800'%3EFR%3C/text%3E%3C/svg%3E" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2315202B'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='14' fill='%23ffffff'%3EFR%3C/text%3E%3C/svg%3E" />
 
-<!-- Google Fonts -->
+<!-- Polices -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════════════════════
-   VARIABLES & RESET
-   ═══════════════════════════════════════════════════════ */
-:root {
-  --clr-bg:        #242a35;
-  --clr-bg-alt:    #1e2330;
-  --clr-card:      #2c3344;
-  --clr-accent:    #ff9800;
-  --clr-accent-dim:#e68a00;
-  --clr-text:      #ffffff;
-  --clr-text-muted:#6c757d;
-  --clr-text-light:#f8f9fa;
-  --clr-dark-text: #212529;
-  --clr-splash-bg: #090909;
-  --clr-splash-path:#121212;
-  --font-heading: 'Black Ops One', cursive;
-  --font-body:    'Rajdhani', sans-serif;
-  --radius:  10px;
-  --radius-lg:16px;
-  --shadow:  0 8px 32px rgba(0,0,0,.35);
-  --trans:   .35s cubic-bezier(.4,0,.2,1);
-}
-*,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
-html{ scroll-behavior:smooth; overflow-x:hidden; }
-body{ font-family:var(--font-body); background:var(--clr-bg); color:var(--clr-text); line-height:1.6; overflow-x:hidden; }
-a{ color:inherit; text-decoration:none; }
-ul{ list-style:none; }
-img{ max-width:100%; display:block; }
-
-/* ═══ SPLASH ═══ */
-#splash{
-  position:fixed; inset:0;
-  background:var(--clr-splash-bg);
-  display:flex; align-items:center; justify-content:center;
-  z-index:9999;
-  transition:opacity .5s .1s, visibility .5s .1s;
-}
-#splash.hidden{ opacity:0; visibility:hidden; }
-.splash-ring{ position:absolute; border-radius:50%; border:3px solid transparent; }
-.splash-ring--outer{
-  width:120px; height:120px;
-  border-color:var(--clr-splash-path);
-  border-top-color:#ffff00;
-  animation:spin 1.2s linear infinite;
-}
-.splash-ring--inner{
-  width:70px; height:70px;
-  border-color:var(--clr-splash-path);
-  border-bottom-color:#03a9f4;
-  animation:spin .8s linear infinite reverse;
-}
-.splash-text{
-  position:absolute;
-  font-family:var(--font-heading);
-  font-size:1rem; color:var(--clr-text-muted);
-  letter-spacing:4px; text-transform:uppercase;
-}
-@keyframes spin{ to{ transform:rotate(360deg); } }
-
-/* ═══ NAVBAR ═══ */
-.navbar{
-  position:fixed; top:0; width:100%;
-  padding:1.1rem 2rem;
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(36,42,53,.85);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,152,0,.15);
-  z-index:1000;
-  transition:padding var(--trans), box-shadow var(--trans);
-}
-.navbar.scrolled{ padding:.6rem 2rem; box-shadow:var(--shadow); }
-.nav-brand .nav-logo{ font-family:var(--font-heading); font-size:1.35rem; color:var(--clr-accent); letter-spacing:1px; }
-.nav-links{ display:flex; gap:1.8rem; }
-.nav-link{
-  font-weight:600; font-size:.92rem; letter-spacing:.5px;
-  text-transform:uppercase; color:var(--clr-text-muted);
-  position:relative; transition:color var(--trans);
-}
-.nav-link::after{
-  content:''; position:absolute; bottom:-4px; left:0;
-  width:0; height:2px; background:var(--clr-accent);
-  transition:width var(--trans);
-}
-.nav-link:hover,.nav-link.active{ color:var(--clr-accent); }
-.nav-link:hover::after,.nav-link.active::after{ width:100%; }
-
-.nav-toggle{
-  display:none; flex-direction:column; gap:5px;
-  background:none; border:none; cursor:pointer; padding:.5rem;
-}
-.nav-toggle span{ display:block; width:26px; height:2px; background:var(--clr-text); transition:transform var(--trans), opacity var(--trans); }
-.nav-toggle.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
-.nav-toggle.active span:nth-child(2){ opacity:0; }
-.nav-toggle.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
-
-/* ═══ HERO ═══ */
-.hero{
-  position:relative; height:100vh; min-height:600px;
-  display:flex; align-items:center; justify-content:center;
-  background:var(--clr-bg); overflow:hidden;
-}
-#particles-container{ position:absolute; inset:0; z-index:0; }
-.hero-content{ position:relative; z-index:1; text-align:center; animation:fadeInUp .9s .4s both; }
-.hero-name{
-  font-family:var(--font-heading);
-  font-size:clamp(2.6rem,7vw,5rem);
-  color:var(--clr-text); letter-spacing:3px; margin-bottom:.3rem;
-  text-shadow:0 0 40px rgba(255,152,0,.25);
-}
-.hero-title{ font-size:clamp(1.1rem,2.5vw,1.5rem); color:var(--clr-text-muted); margin-bottom:.8rem; height:2rem; }
-.hero-role{ color:var(--clr-accent); font-weight:700; }
-.typer-cursor{ color:var(--clr-accent); animation:blink .7s step-end infinite; }
-@keyframes blink{ 50%{ opacity:0; } }
-.hero-tagline{ font-size:1.05rem; color:var(--clr-text-muted); margin-bottom:1.8rem; letter-spacing:2px; text-transform:uppercase; }
-.hero-social{ display:flex; gap:1.2rem; justify-content:center; margin-bottom:2.8rem; }
-.hero-social a{
-  width:44px; height:44px; border:2px solid var(--clr-text-muted); border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:var(--clr-text-muted); font-size:1.1rem;
-  transition:border-color var(--trans), color var(--trans), transform var(--trans), box-shadow var(--trans);
-}
-.hero-social a:hover{ border-color:var(--clr-accent); color:var(--clr-accent); transform:translateY(-3px); box-shadow:0 4px 16px rgba(255,152,0,.3); }
-.scroll-arrow{
-  position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
-  color:var(--clr-text-muted); font-size:1.4rem; animation:bounce 2s infinite; z-index:1;
-}
-@keyframes bounce{
-  0%,100%{ transform:translateX(-50%) translateY(0); }
-  50%{ transform:translateX(-50%) translateY(12px); }
-}
-
-/* ═══ SECTIONS ═══ */
-.section{ padding:6rem 0; background:var(--clr-bg); }
-.section--alt{ background:var(--clr-bg-alt); }
-.container{ max-width:1100px; margin:0 auto; padding:0 1.5rem; }
-.section-title{
-  font-family:var(--font-heading); font-size:clamp(1.8rem,4vw,2.6rem);
-  text-align:center; color:var(--clr-text); letter-spacing:2px; margin-bottom:.6rem; position:relative;
-}
-.section-title::after{
-  content:''; display:block; width:60px; height:3px;
-  background:var(--clr-accent); margin:.7rem auto 3rem; border-radius:2px;
-}
-
-/* ═══ BUTTONS ═══ */
-.btn{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.7rem 1.6rem; border-radius:var(--radius);
-  font-family:var(--font-body); font-weight:600; font-size:.92rem;
-  letter-spacing:.5px; text-transform:uppercase;
-  cursor:pointer; border:none;
-  transition:transform var(--trans), box-shadow var(--trans), background var(--trans);
-}
-.btn--primary{ background:var(--clr-accent); color:var(--clr-dark-text); }
-.btn--primary:hover{ background:var(--clr-accent-dim); transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,152,0,.4); }
-.btn--small{ padding:.42rem 1rem; font-size:.78rem; background:rgba(255,152,0,.15); color:var(--clr-accent); border:1px solid rgba(255,152,0,.35); }
-.btn--small:hover{ background:var(--clr-accent); color:var(--clr-dark-text); box-shadow:0 4px 14px rgba(255,152,0,.35); }
-
-/* ═══ ABOUT ═══ */
-.about-grid{ display:grid; grid-template-columns:320px 1fr; gap:3.5rem; align-items:center; }
-.about-image-wrap{ display:flex; justify-content:center; }
-.about-image-frame{
-  width:260px; height:260px; border-radius:50%;
-  border:4px solid var(--clr-accent); overflow:hidden;
-  box-shadow:0 0 30px rgba(255,152,0,.2); background:var(--clr-card);
-}
-.about-image{ width:100%; height:100%; object-fit:cover; }
-.about-text p{ color:var(--clr-text-muted); margin-bottom:1rem; font-size:1.05rem; }
-.about-text strong{ color:var(--clr-accent); }
-.about-info{ display:flex; flex-wrap:wrap; gap:.7rem 2rem; margin:1.4rem 0 1.8rem; }
-.info-item{ color:var(--clr-text-muted); font-size:.95rem; }
-.info-item i{ color:var(--clr-accent); margin-right:.4rem; }
-
-/* ═══ SKILLS ═══ */
-.skills-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.6rem; }
-.skill-card{
-  background:var(--clr-card); border:1px solid rgba(255,152,0,.12);
-  border-radius:var(--radius-lg); padding:2rem 1.6rem; text-align:center;
-  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans);
-  transform-style:preserve-3d; perspective:1000px;
-}
-.skill-card:hover{ border-color:var(--clr-accent); box-shadow:0 8px 30px rgba(255,152,0,.18); }
-.skill-icon{ font-size:2.4rem; color:var(--clr-accent); margin-bottom:.8rem; }
-.skill-card h3{ font-family:var(--font-heading); font-size:1.1rem; letter-spacing:1px; color:var(--clr-text); margin-bottom:.9rem; }
-.skill-bar-wrap{ width:100%; height:6px; background:rgba(255,255,255,.08); border-radius:3px; overflow:hidden; margin-bottom:.5rem; }
-.skill-bar{ height:100%; background:linear-gradient(90deg,var(--clr-accent),#ffb74d); border-radius:3px; width:0; transition:width 1.2s ease .3s; }
-.skill-percent{ font-size:.82rem; color:var(--clr-text-muted); }
-
-/* ═══ TIMELINE ═══ */
-.timeline{ max-width:700px; margin:0 auto; position:relative; padding-left:2.5rem; }
-.timeline::before{ content:''; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,var(--clr-accent),transparent); }
-.timeline-item{ position:relative; margin-bottom:2.4rem; }
-.timeline-dot{
-  position:absolute; left:-2.5rem; top:.55rem;
-  width:18px; height:18px; border-radius:50%;
-  background:var(--clr-accent); border:3px solid var(--clr-bg-alt);
-  box-shadow:0 0 10px rgba(255,152,0,.35); transform:translateX(3px);
-}
-.timeline-card{ background:var(--clr-card); border:1px solid rgba(255,152,0,.12); border-radius:var(--radius); padding:1.5rem 1.6rem; transition:border-color var(--trans); }
-.timeline-card:hover{ border-color:var(--clr-accent); }
-.timeline-date{ font-size:.78rem; color:var(--clr-accent); text-transform:uppercase; letter-spacing:1px; font-weight:700; }
-.timeline-card h3{ font-family:var(--font-heading); font-size:1.15rem; margin:.3rem 0 .15rem; letter-spacing:.5px; }
-.timeline-place{ color:var(--clr-text-muted); font-size:.88rem; margin-bottom:.5rem; font-style:italic; }
-.timeline-card p{ color:var(--clr-text-muted); font-size:.93rem; }
-.timeline-text{ color:var(--clr-text); font-size:.93rem; }
-
-/* ═══ PORTFOLIO ═══ */
-.portfolio-filters{ display:flex; justify-content:center; gap:.7rem; margin-bottom:2.4rem; flex-wrap:wrap; }
-.filter-btn{
-  background:transparent; border:1px solid rgba(255,152,0,.3);
-  color:var(--clr-text-muted); padding:.42rem 1.2rem; border-radius:20px;
-  font-family:var(--font-body); font-size:.85rem; font-weight:600;
-  letter-spacing:.5px; text-transform:uppercase; cursor:pointer;
-  transition:background var(--trans), color var(--trans), border-color var(--trans);
-}
-.filter-btn:hover,.filter-btn.active{ background:var(--clr-accent); color:var(--clr-dark-text); border-color:var(--clr-accent); }
-.portfolio-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.8rem; }
-.project-card{
-  background:var(--clr-card); border:1px solid rgba(255,152,0,.1);
-  border-radius:var(--radius-lg); overflow:hidden;
-  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans);
-  transform-style:preserve-3d; perspective:1000px;
-}
-.project-card:hover{ border-color:var(--clr-accent); box-shadow:0 12px 36px rgba(0,0,0,.3); }
-.project-card.hidden{ display:none; }
-.project-img{ position:relative; height:190px; overflow:hidden; background:var(--clr-bg); }
-.project-img img{ width:100%; height:100%; object-fit:cover; transition:transform .5s; }
-.project-card:hover .project-img img{ transform:scale(1.07); }
-.project-overlay{
-  position:absolute; inset:0; background:rgba(36,42,53,.82);
-  display:flex; align-items:center; justify-content:center;
-  gap:.8rem; opacity:0; transition:opacity var(--trans);
-}
-.project-card:hover .project-overlay{ opacity:1; }
-.project-info{ padding:1.3rem 1.4rem 1.5rem; }
-.project-info h3{ font-family:var(--font-heading); font-size:1.05rem; letter-spacing:.5px; margin-bottom:.35rem; }
-.project-info p{ color:var(--clr-text-muted); font-size:.88rem; margin-bottom:.8rem; }
-.project-tags{ display:flex; flex-wrap:wrap; gap:.35rem; }
-.project-tags span{ font-size:.72rem; background:rgba(255,152,0,.1); color:var(--clr-accent); padding:.22rem .6rem; border-radius:12px; font-weight:600; letter-spacing:.3px; }
-
-/* ═══ ACHIEVEMENTS ═══ */
-.achievement-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; }
-.achievement-card{
-  background:var(--clr-card); border:1px solid rgba(255,152,0,.12);
-  border-radius:var(--radius-lg); padding:2rem 1.4rem; text-align:center;
-  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans);
-  transform-style:preserve-3d; perspective:1000px;
-}
-.achievement-card:hover{ border-color:var(--clr-accent); box-shadow:0 8px 28px rgba(255,152,0,.18); }
-.achievement-icon{ font-size:2.2rem; color:var(--clr-accent); margin-bottom:.9rem; }
-.achievement-card h3{ font-family:var(--font-heading); font-size:1.02rem; letter-spacing:.5px; margin-bottom:.35rem; }
-.achievement-card p{ color:var(--clr-text-muted); font-size:.85rem; }
-
-/* ═══ CONTACT ═══ */
-.contact-grid{ display:grid; grid-template-columns:1fr 1.6fr; gap:3rem; }
-.contact-item{ display:flex; align-items:center; gap:1rem; margin-bottom:1.8rem; }
-.contact-icon{
-  width:50px; height:50px; border-radius:50%;
-  background:rgba(255,152,0,.1); border:2px solid rgba(255,152,0,.25);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--clr-accent); font-size:1.1rem; flex-shrink:0;
-}
-.contact-item h4{ font-family:var(--font-heading); font-size:.95rem; letter-spacing:.5px; margin-bottom:.1rem; }
-.contact-item p,.contact-item a{ color:var(--clr-text-muted); font-size:.92rem; }
-.contact-item a:hover{ color:var(--clr-accent); }
-.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.form-group{ margin-bottom:1.1rem; }
-.form-group label{ display:block; font-size:.82rem; text-transform:uppercase; letter-spacing:1px; color:var(--clr-text-muted); margin-bottom:.35rem; font-weight:600; }
-.form-group input,.form-group textarea{
-  width:100%; padding:.75rem 1rem; border-radius:var(--radius);
-  border:1px solid rgba(255,152,0,.2); background:var(--clr-card);
-  color:var(--clr-text); font-family:var(--font-body); font-size:.95rem;
-  transition:border-color var(--trans), box-shadow var(--trans);
-  outline:none; resize:vertical;
-}
-.form-group input::placeholder,.form-group textarea::placeholder{ color:var(--clr-text-muted); opacity:.6; }
-.form-group input:focus,.form-group textarea:focus{ border-color:var(--clr-accent); box-shadow:0 0 14px rgba(255,152,0,.18); }
-
-/* ═══ FOOTER ═══ */
-.footer{ background:var(--clr-bg-alt); border-top:1px solid rgba(255,152,0,.1); padding:2.4rem 1rem; text-align:center; }
-.footer-social{ display:flex; justify-content:center; gap:1rem; margin-bottom:1rem; }
-.footer-social a{ color:var(--clr-text-muted); font-size:1.1rem; transition:color var(--trans), transform var(--trans); }
-.footer-social a:hover{ color:var(--clr-accent); transform:translateY(-3px); }
-.footer-text{ color:var(--clr-text-muted); font-size:.82rem; }
-
-/* ═══ BACK TO TOP ═══ */
-.back-to-top{
-  position:fixed; bottom:2rem; right:2rem;
-  width:44px; height:44px; border-radius:50%;
-  background:var(--clr-accent); color:var(--clr-dark-text);
-  border:none; font-size:1.1rem; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; transform:translateY(20px);
-  transition:opacity var(--trans), transform var(--trans), box-shadow var(--trans);
-  z-index:100; pointer-events:none;
-}
-.back-to-top.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
-.back-to-top:hover{ box-shadow:0 4px 18px rgba(255,152,0,.4); }
-
-/* ═══ SCROLL REVEAL ═══ */
-.reveal{ opacity:0; transform:translateY(40px); transition:opacity .7s ease, transform .7s ease; }
-.reveal.visible{ opacity:1; transform:translateY(0); }
-
-/* ═══ KEYFRAMES ═══ */
-@keyframes fadeInUp{ from{ opacity:0; transform:translateY(30px); } to{ opacity:1; transform:translateY(0); } }
-
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:900px){
-  .about-grid{ grid-template-columns:1fr; text-align:center; }
-  .about-info{ justify-content:center; }
-  .contact-grid{ grid-template-columns:1fr; }
-}
-@media(max-width:720px){
-  .nav-toggle{ display:flex; }
-  .nav-links{
-    position:absolute; top:100%; left:0; right:0;
-    flex-direction:column; align-items:center;
-    background:rgba(36,42,53,.96); backdrop-filter:blur(12px);
-    padding:1.5rem 0; gap:1rem;
-    max-height:0; overflow:hidden;
-    transition:max-height .4s ease, padding .4s ease;
-  }
-  .nav-links.open{ max-height:400px; padding:1.6rem 0; }
-  .form-row{ grid-template-columns:1fr; }
-  .about-image-frame{ width:200px; height:200px; }
-}
-@media(max-width:480px){
-  .navbar{ padding:.8rem 1rem; }
-  .section{ padding:4rem 0; }
-  .portfolio-grid,.skills-grid,.achievement-grid{ grid-template-columns:1fr; }
-}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:#F6F5F1}
+a{color:#15202B}a:hover{color:#B23A0B}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #B23A0B;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+@media (max-width: 640px){header{position:static !important}#hero-title{font-size:40px !important}h2{font-size:30px !important}}
 </style>
 </head>
 <body>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #15202B; background: #F6F5F1; font-size: 17px; line-height: 1.6">
 
-<!-- ═══ SPLASH ═══ -->
-<div id="splash">
-  <div class="splash-ring splash-ring--outer"></div>
-  <div class="splash-ring splash-ring--inner"></div>
-  <div class="splash-text">Loading…</div>
+<header style="position: sticky; top: 0; z-index: 10; background: rgba(246,245,241,0.94); border-bottom: 1px solid #E2E0D9">
+<div style="max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #15202B">
+<span style="width: 38px; height: 38px; border-radius: 8px; background: #15202B; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 15px">FR</span>
+<span style="font-weight: 600; font-size: 17px">Franck RAHON</span>
+</a>
+<nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 500">
+<a href="#competences" style="text-decoration: none; padding: 10px 0">Compétences</a>
+<a href="#projets" style="text-decoration: none; padding: 10px 0">Projets</a>
+<a href="#experience" style="text-decoration: none; padding: 10px 0">Expérience</a>
+<a href="#formation" style="text-decoration: none; padding: 10px 0">Formation</a>
+<a href="#contact" style="text-decoration: none; padding: 10px 0">Contact</a>
+<a href="assets/Franck%20Rahon%20-%20CV.pdf" download style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 8px; background: #B23A0B; color: #FFFFFF; font-weight: 600">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+CV (PDF)</a>
+</nav>
+</div>
+</header>
+
+<main id="top">
+
+<section aria-labelledby="hero-title" style="max-width: 1180px; margin: 0 auto; padding: 88px 24px 56px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 999 1 560px; min-width: 0">
+<p style="margin: 0 0 20px; display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #2F6B3F; background: #E6F1E8; padding: 6px 14px; border-radius: 999px">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #2F6B3F"></span>
+Disponible — ouvert aux postes de Data Analyst</p>
+<h1 id="hero-title" style="margin: 0; font-size: 60px; line-height: 1.08; font-weight: 700; letter-spacing: -0.02em">Data Analyst spécialisé en <span style="color: #B23A0B">données financières</span>.</h1>
+<p style="margin: 24px 0 0; font-size: 20px; line-height: 1.55; color: #3E4A57; max-width: 640px">Près de 6 ans en cabinet comptable, puis une reconversion data au Wagon. Je transforme des données comptables et opérationnelles en reportings automatisés et en indicateurs utiles à la décision, avec SQL, Python et Power BI.</p>
+<div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#projets" style="text-decoration: none; display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 8px; background: #15202B; color: #FFFFFF; font-weight: 600">Voir les projets</a>
+<a href="https://www.linkedin.com/in/franck-rahon" target="_blank" rel="noopener" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 8px; border: 1.5px solid #15202B; font-weight: 600">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+LinkedIn</a>
+<a href="https://github.com/falendrir" target="_blank" rel="noopener" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 8px; border: 1.5px solid #15202B; font-weight: 600">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+GitHub</a>
+</div>
+</div>
+<figure style="flex: 1 1 300px; margin: 0; max-width: 380px">
+<img src="assets/FR.jpg" alt="Portrait de Franck RAHON" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; display: block">
+<figcaption style="margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5563">
+<span>Tremblay-en-France (95)</span>
+</figcaption>
+</figure>
+</section>
+
+<section aria-label="En bref" style="max-width: 1180px; margin: 0 auto; padding: 0 24px 88px">
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid #CFCCC3; border-bottom: 1px solid #CFCCC3">
+<div style="padding: 24px 24px 24px 0">
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5563; text-transform: uppercase; letter-spacing: 0.06em">Expérience métier</dt>
+<dd style="margin: 6px 0 0; font-size: 22px; font-weight: 600; line-height: 1.3">~6 ans en comptabilité &amp; fiscalité</dd>
+</div>
+<div style="padding: 24px 24px 24px 0">
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5563; text-transform: uppercase; letter-spacing: 0.06em">Formation data</dt>
+<dd style="margin: 6px 0 0; font-size: 22px; font-weight: 600; line-height: 1.3">Le Wagon — titre RNCP niveau 6</dd>
+</div>
+<div style="padding: 24px 24px 24px 0">
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5563; text-transform: uppercase; letter-spacing: 0.06em">Stack principale</dt>
+<dd style="margin: 6px 0 0; font-size: 22px; font-weight: 600; line-height: 1.3">SQL · Python · Power BI</dd>
+</div>
+<div style="padding: 24px 0">
+<dt style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #4A5563; text-transform: uppercase; letter-spacing: 0.06em">Recherche</dt>
+<dd style="margin: 6px 0 0; font-size: 22px; font-weight: 600; line-height: 1.3">Ouvert aux opportunités</dd>
+</div>
+</dl>
+</section>
+
+<section id="competences" aria-labelledby="competences-title" style="background: #FFFFFF; border-top: 1px solid #E2E0D9; border-bottom: 1px solid #E2E0D9">
+<div style="max-width: 1180px; margin: 0 auto; padding: 88px 24px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #B23A0B">01 — Compétences</p>
+<h2 id="competences-title" style="margin: 8px 0 0; font-size: 38px; line-height: 1.2; letter-spacing: -0.01em">Ce que j'apporte à une équipe data</h2>
+<p style="margin: 16px 0 0; max-width: 680px; color: #3E4A57">Un double profil : les outils de l'analyste, et la compréhension des chiffres comptables et fiscaux qu'ils servent à expliquer.</p>
+<div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+<div style="border: 1px solid #E2E0D9; border-radius: 12px; padding: 28px; background: #FBFAF7">
+<h3 style="margin: 0; font-size: 19px">Requêtage &amp; données</h3>
+<ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: #3E4A57; font-size: 16px">
+<li><strong style="color: #15202B">SQL</strong> — PostgreSQL, BigQuery</li>
+<li><strong style="color: #15202B">dbt</strong> — modélisation et transformation</li>
+<li><strong style="color: #15202B">Git / GitHub</strong> — versionnage, travail en équipe</li>
+</ul>
+</div>
+<div style="border: 1px solid #E2E0D9; border-radius: 12px; padding: 28px; background: #FBFAF7">
+<h3 style="margin: 0; font-size: 19px">Analyse &amp; Python</h3>
+<ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: #3E4A57; font-size: 16px">
+<li><strong style="color: #15202B">Pandas, NumPy</strong> — nettoyage, préparation</li>
+<li><strong style="color: #15202B">Scikit-learn</strong> — premiers modèles de ML</li>
+<li><strong style="color: #15202B">Matplotlib, Seaborn</strong> — analyse exploratoire</li>
+</ul>
+</div>
+<div style="border: 1px solid #E2E0D9; border-radius: 12px; padding: 28px; background: #FBFAF7">
+<h3 style="margin: 0; font-size: 19px">Visualisation &amp; reporting</h3>
+<ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: #3E4A57; font-size: 16px">
+<li><strong style="color: #15202B">Power BI</strong> — tableaux de bord, KPI</li>
+<li><strong style="color: #15202B">Looker Studio</strong> — dashboards partagés</li>
+<li><strong style="color: #15202B">Excel avancé</strong> — modèles automatisés</li>
+</ul>
+</div>
+<div style="border: 1.5px solid #15202B; border-radius: 12px; padding: 28px; background: #15202B; color: #FFFFFF">
+<h3 style="margin: 0; font-size: 19px">Expertise métier finance</h3>
+<ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; color: #D5DAE1; font-size: 16px">
+<li><strong style="color: #FFFFFF">Comptabilité</strong> — saisie, clôtures mensuelles et annuelles</li>
+<li><strong style="color: #FFFFFF">Fiscalité</strong> — TVA, IS, CFE</li>
+<li><strong style="color: #FFFFFF">Reporting financier</strong> — suivi d'indicateurs</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="projets" aria-labelledby="projets-title" style="max-width: 1180px; margin: 0 auto; padding: 88px 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div>
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #B23A0B">02 — Projets</p>
+<h2 id="projets-title" style="margin: 8px 0 0; font-size: 38px; line-height: 1.2; letter-spacing: -0.01em">Études de cas</h2>
+</div>
+<a href="https://github.com/falendrir" target="_blank" rel="noopener" style="font-weight: 600; font-size: 16px; min-height: 44px; display: inline-flex; align-items: center">Tous les dépôts sur GitHub →</a>
 </div>
 
-<!-- ═══ NAVBAR ═══ -->
-<nav id="navbar" class="navbar">
-  <div class="nav-brand"><span class="nav-logo">&lt;Franck RAHON&gt;</span></div>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home"         class="nav-link active">Accueil</a></li>
-    <li><a href="#about"        class="nav-link">À propos</a></li>
-    <li><a href="#skills"       class="nav-link">Compétences</a></li>
-    <li><a href="#experience"   class="nav-link">Expériences pro.</a></li>
-    <li><a href="#portfolio"    class="nav-link">Portfolio</a></li>
-    <li><a href="#education"    class="nav-link">Éducation</a></li>
-    <li><a href="#contact"      class="nav-link">Contact</a></li>
-  </ul>
-</nav>
+<article style="margin-top: 40px; background: #FFFFFF; border: 1px solid #E2E0D9; border-radius: 16px; overflow: hidden; display: flex; flex-wrap: wrap">
+<img src="assets/Accueil.png" alt="Tableau de bord Looker Studio du projet Tsunami" style="flex: 1 1 420px; min-width: 0; width: 100%; max-height: 460px; object-fit: cover; object-position: top left; display: block; background: #E9E7E1">
+<div style="flex: 1 1 420px; min-width: 0; padding: 36px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">BigQuery</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">dbt</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">Looker Studio</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">Python · ML</span>
+</div>
+<h3 style="margin: 0; font-size: 28px; line-height: 1.25">Tsunami — quel manga adapter en animé&nbsp;?</h3>
+<dl style="margin: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px">
+<div><dt style="font-weight: 600">Question métier</dt><dd style="margin: 2px 0 0; color: #3E4A57">Identifier les mangas qui ont le plus de chances de réussir une adaptation en animé.</dd></div>
+<div><dt style="font-weight: 600">Démarche</dt><dd style="margin: 2px 0 0; color: #3E4A57">Collecte et modélisation des données dans BigQuery avec dbt, dashboard Looker Studio, modèle de machine learning en Python.</dd></div>
+</dl>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://lookerstudio.google.com/u/0/reporting/b71bf52d-cc0b-4869-bf8b-66f0d56225fd" target="_blank" rel="noopener" style="text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; background: #15202B; color: #FFFFFF; font-weight: 600; font-size: 15px">Voir le dashboard</a>
+<a href="https://github.com/falendrir/Tsunami" target="_blank" rel="noopener" style="text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; border: 1.5px solid #15202B; font-weight: 600; font-size: 15px">Code source</a>
+</div>
+</div>
+</article>
 
-<!-- ═══ HERO ═══ -->
-<section id="home" class="hero">
-  <div id="particles-container"></div>
-  <div class="hero-content">
-    <h1 class="hero-name">Franck RAHON</h1>
-    <div class="hero-title">
-      <span class="hero-prefix">Je suis un </span>
-      <span class="hero-role" id="roleTyper"></span><span class="typer-cursor">|</span>
-    </div>
-    <p class="hero-tagline">De la donnée brute à la décision métier</p>
-    <div class="hero-social">
-      <a href="https://github.com/falendrir" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/franck-rahon" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <!-- a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a-->
-      <a href="mailto:franck.rahon@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
-      <a href="#about" class="scroll-arrow" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+<article style="margin-top: 24px; background: #FFFFFF; border: 1px solid #E2E0D9; border-radius: 16px; overflow: hidden; display: flex; flex-wrap: wrap-reverse">
+<div style="flex: 1 1 420px; min-width: 0; padding: 36px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">PostgreSQL</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">SQL</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 4px 10px; border-radius: 6px; background: #EEF0F3">Power BI</span>
+</div>
+<h3 style="margin: 0; font-size: 28px; line-height: 1.25">Superstore — performance des ventes</h3>
+<dl style="margin: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px">
+<div><dt style="font-weight: 600">Démarche</dt><dd style="margin: 2px 0 0; color: #3E4A57">Exploration du dataset Superstore Sales (Kaggle) en SQL sur PostgreSQL, puis restitution dans un rapport Power BI.</dd></div>
+</dl>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://github.com/falendrir/superstore" target="_blank" rel="noopener" style="text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; background: #15202B; color: #FFFFFF; font-weight: 600; font-size: 15px">Code source</a>
+<a href="assets/Dash.pbix" download style="text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; border: 1.5px solid #15202B; font-weight: 600; font-size: 15px">Télécharger le .pbix</a>
+</div>
+</div>
+<img src="assets/img_superstore.png" alt="Rapport Power BI du projet Superstore" style="flex: 1 1 420px; min-width: 0; width: 100%; max-height: 460px; object-fit: cover; object-position: top left; display: block; background: #E9E7E1">
+</article>
 </section>
 
-<!-- ═══ ABOUT ═══ -->
-<section id="about" class="section section--alt">
-  <div class="container">
-    <h2 class="section-title">À propos de moi</h2>
-    <div class="about-grid">
-      <div class="about-image-wrap">
-        <div class="about-image-frame">
-          <!-- Inline SVG placeholder — replace src with your photo URL -->
-          <img src="assets/FR.jpg" alt="Profile" class="about-image" />
-        </div>
-      </div>
-      <div class="about-text">
-        <p>Salut! Moi c'est <strong>Franck</strong>, analyste de données junior spécialisé en données financières, avec une
-          expérience en comptabilité et reporting financier. Compétences en Excel avancé, SQL et Python pour
-          l’automatisation des reportings, l’analyse des KPI et l’optimisation des processus décisionnels.
-          Capacité à exploiter des ensembles de données complexes pour améliorer la performance opérationnelle et
-          soutenir les équipes métiers.</p>
-        <div class="about-info">
-          <div class="info-item"><i class="fas fa-map-marker-alt"></i> Tremblay-en-France, France</div>
-          <div class="info-item"><i class="fas fa-envelope"></i> franck.rahon@gmail.com</div>
-          <div class="info-item"><i class="fas fa-briefcase"></i> Ouvert aux opportunités</div>
-        </div>
-        <a href="assets/Franck Rahon - CV.pdf" download class="btn btn--primary"><i class="fas fa-download"></i> Télécharger le CV</a>
-      </div>
-    </div>
-  </div>
+<section id="experience" aria-labelledby="experience-title" style="background: #FFFFFF; border-top: 1px solid #E2E0D9; border-bottom: 1px solid #E2E0D9">
+<div style="max-width: 1180px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 260px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #B23A0B">03 — Expérience</p>
+<h2 id="experience-title" style="margin: 8px 0 0; font-size: 38px; line-height: 1.2; letter-spacing: -0.01em">Parcours professionnel</h2>
+<p style="margin: 16px 0 0; color: #3E4A57">De la production comptable au support d'un logiciel SaaS financier : le terrain où naissent les données que j'analyse aujourd'hui.</p>
+</div>
+<ol style="flex: 999 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+<li style="display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 32px; padding: 0 0 32px; border-bottom: 1px solid #E2E0D9">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563; padding-top: 4px">06/2024 – 09/2025</span>
+<div>
+<h3 style="margin: 0; font-size: 21px">Customer Care — Support client</h3>
+<p style="margin: 2px 0 0; font-weight: 500; color: #3E4A57">FINTHESIS · logiciel SaaS financier, Lyon</p>
+<ul style="margin: 12px 0 0; padding-left: 20px; color: #3E4A57; font-size: 16px; display: flex; flex-direction: column; gap: 4px">
+<li>Signalement et suivi des bugs avec les équipes QA et produit.</li>
+<li>Tests fonctionnels avant le déploiement des nouvelles fonctionnalités.</li>
+<li>Rédaction de notifications et de tutoriels lors des mises à jour produit.</li>
+</ul>
+</div>
+</li>
+<li style="display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 32px; padding: 32px 0; border-bottom: 1px solid #E2E0D9">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563; padding-top: 4px">07/2022 – 06/2024</span>
+<div>
+<h3 style="margin: 0; font-size: 21px">Responsable IT</h3>
+<p style="margin: 2px 0 0; font-weight: 500; color: #3E4A57">AGK · cabinet comptable, Paris</p>
+<ul style="margin: 12px 0 0; padding-left: 20px; color: #3E4A57; font-size: 16px; display: flex; flex-direction: column; gap: 4px">
+<li>Développement de modèles Excel automatisés pour les équipes.</li>
+<li>Déploiement de logiciels métiers et accompagnement des utilisateurs.</li>
+<li>Gestion du parc informatique et supervision des sauvegardes serveur.</li>
+</ul>
+</div>
+</li>
+<li style="display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 32px; padding: 32px 0 0">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563; padding-top: 4px">10/2018 – 06/2024</span>
+<div>
+<h3 style="margin: 0; font-size: 21px">Collaborateur comptable confirmé</h3>
+<p style="margin: 2px 0 0; font-weight: 500; color: #3E4A57">AGK · cabinet comptable, Paris</p>
+<ul style="margin: 12px 0 0; padding-left: 20px; color: #3E4A57; font-size: 16px; display: flex; flex-direction: column; gap: 4px">
+<li>Saisie des opérations et préparation des clôtures mensuelles et annuelles.</li>
+<li>Préparation des déclarations fiscales : TVA, impôt sur les sociétés, CFE.</li>
+<li>Constitution des dossiers de déclaration fiscale.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
 </section>
 
-<!-- ═══ SKILLS ═══ -->
-<section id="skills" class="section">
-  <div class="container">
-    <h2 class="section-title">Compétences</h2>
-    <div class="skills-grid">
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-regular fa-file-code"></i></div><h3>SQL</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div><span class="skill-percent">65%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-python"></i></div><h3>Python</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="50"></div></div><span class="skill-percent">50%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fas fa-database"></i></div><h3>Databases</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="40"></div></div><span class="skill-percent">40%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-solid fa-chart-simple"></i></div><h3>Visualisation</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div><span class="skill-percent">65%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fab fa-github"></i></div><h3>GitHub</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="55"></div></div><span class="skill-percent">55%</span></div>
-      <div class="skill-card" data-tilt><div class="skill-icon"><i class="fa-solid fa-file-excel"></i></div><h3>Tableur</h3><div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div><span class="skill-percent">75%</span></div>
-    </div>
-  </div>
+<section id="formation" aria-labelledby="formation-title" style="max-width: 1180px; margin: 0 auto; padding: 88px 24px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #B23A0B">04 — Formation</p>
+<h2 id="formation-title" style="margin: 8px 0 0; font-size: 38px; line-height: 1.2; letter-spacing: -0.01em">Formation</h2>
+<div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1.5px solid #15202B; border-radius: 12px; padding: 28px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563">2025 · Paris</span>
+<h3 style="margin: 8px 0 0; font-size: 19px; line-height: 1.35">Concepteur développeur en IA et analyse big data — niveau 6</h3>
+<p style="margin: 6px 0 0; font-weight: 600">Le Wagon</p>
+<p style="margin: 10px 0 0; font-size: 15px; color: #3E4A57">Bootcamp intensif Data Science (9 semaines) : Python, SQL, Pandas, Scikit-learn, Git, dbt.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D9; border-radius: 12px; padding: 28px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563">2016 – 2017 · Québec</span>
+<h3 style="margin: 8px 0 0; font-size: 19px; line-height: 1.35">Business et entrepreneuriat international</h3>
+<p style="margin: 6px 0 0; font-weight: 600">Université Laval</p>
+<p style="margin: 10px 0 0; font-size: 15px; color: #3E4A57">Business plan, entrepreneuriat, monde des affaires en Amérique du Nord.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D9; border-radius: 12px; padding: 28px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A5563">2016 – 2017 · Toulouse</span>
+<h3 style="margin: 8px 0 0; font-size: 19px; line-height: 1.35">Bachelor Business and Management</h3>
+<p style="margin: 6px 0 0; font-weight: 600">Institut Supérieur de Gestion</p>
+<p style="margin: 10px 0 0; font-size: 15px; color: #3E4A57">Parcours international : 50 % France, 50 % étranger.</p>
+</div>
+</div>
 </section>
 
-<!-- ═══ EXPERIENCE ═══ -->
-<section id="experience" class="section section--alt">
-  <div class="container">
-    <h2 class="section-title">Expériences professionnelles</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">06/2024 - 09/2025</span>
-          <h3>Customer Care - Support client</h3>
-          <p class="timeline-place">FINTHESIS - Logiciel SaaS, Lyon</p>
-          <ul>
-            <li>Gestion des demandes clients via chatbot et outils de support.</li>
-            <li>Signalement et suivi des bugs en collaboration avec les équipes techniques (QA, développement produit).</li>
-            <li>Tests fonctionnels avant déploiement des nouvelles fonctionnalités.</li>
-            <li>Création de notifications et tutoriels pour accompagner les utilisateurs lors des mises à jour produit.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">07/2022 – 06/2024</span>
-          <h3>Responsable IT</h3>
-          <p class="timeline-place">AGK - Cabinet comptable, Paris</p>
-          <ul>
-            <li>Gestion du parc informatique et des outils numériques du cabinet</li>
-            <li>Supervision des sauvegardes serveur.</li>
-            <li>Déploiement de logiciels métiers et accompagnement des utilisateurs.</li>
-            <li>Développement de modèles Excel automatisés.</li>
-            <li>Assistance technique et résolution d’incidents informatiques.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">10/2018 – 06/2024</span>
-          <h3>Collaborateur confirmé</h3>
-          <p class="timeline-place">AGK - Cabinet comptable, Paris</p>
-          <ul>
-            <li>Saisie des opérations comptables.</li>
-            <li>Préparation des déclarations fiscales (TVA, impôt sur les sociétés, CFE, etc.).</li>
-            <li>Saisie des données pour les clôtures mensuelles et annuelles.</li>
-            <li>Préparation du dossier de déclaration fiscale.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="contact" aria-labelledby="contact-title" style="background: #15202B; color: #FFFFFF">
+<div style="max-width: 1180px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 380px; min-width: 0">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #F5A66B">05 — Contact</p>
+<h2 id="contact-title" style="margin: 8px 0 0; font-size: 38px; line-height: 1.2; letter-spacing: -0.01em">Échangeons sur votre besoin data</h2>
+<p style="margin: 16px 0 0; color: #C9D0D9">Recruteur ou manager, je réponds sous 48 h.</p>
+<ul style="margin: 32px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 18px">
+<li style="display: flex; align-items: center; gap: 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A66B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+<a href="mailto:franck.rahon@gmail.com" style="color: #FFFFFF">franck.rahon@gmail.com</a></li>
+<li style="display: flex; align-items: center; gap: 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A66B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+<a href="tel:+33642295299" style="color: #FFFFFF">+33 6 42 29 52 99</a></li>
+<li style="display: flex; align-items: center; gap: 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A66B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+<a href="https://www.linkedin.com/in/franck-rahon" target="_blank" rel="noopener" style="color: #FFFFFF">linkedin.com/in/franck-rahon</a></li>
+</ul>
+</div>
+<form action="https://api.web3forms.com/submit" method="POST" style="flex: 1 1 440px; min-width: 0; background: #FFFFFF; color: #15202B; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<input type="hidden" name="access_key" value="5d850cc3-e25a-41fb-b4b2-5835a6621f87">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px">Nom
+<input type="text" name="name" required placeholder="Votre nom" style="min-height: 46px; padding: 0 14px; border: 1px solid #B9B5AB; border-radius: 8px; font: inherit; font-weight: 400"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px">Email
+<input type="email" name="email" required placeholder="vous@entreprise.com" style="min-height: 46px; padding: 0 14px; border: 1px solid #B9B5AB; border-radius: 8px; font: inherit; font-weight: 400"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px">Entreprise / poste
+<input type="text" name="subject" required placeholder="Ex. : Data Analyst — Direction financière" style="min-height: 46px; padding: 0 14px; border: 1px solid #B9B5AB; border-radius: 8px; font: inherit; font-weight: 400"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px">Message
+<textarea name="message" required rows="5" placeholder="Votre message…" style="padding: 12px 14px; border: 1px solid #B9B5AB; border-radius: 8px; font: inherit; font-weight: 400; resize: vertical"></textarea></label>
+<button type="submit" style="min-height: 48px; border: 0; border-radius: 8px; background: #B23A0B; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">Envoyer le message</button>
+</form>
+</div>
 </section>
 
-<!-- ═══ PORTFOLIO ═══ -->
-<section id="portfolio" class="section">
-  <div class="container">
-    <h2 class="section-title">Portfolio</h2>
-    <div class="portfolio-filters">
-      <button class="filter-btn active" data-filter="all">Tout</button>
-      <button class="filter-btn" data-filter="bg">BigQuery</button>
-      <button class="filter-btn" data-filter="pbi">PowerBi</button>
-      <!--button class="filter-btn" data-filter="tool">Tool</button-->
-    </div>
-    <div class="portfolio-grid" id="portfolioGrid">
+</main>
 
-      <div class="project-card" data-tilt data-category="bg">
-        <div class="project-img">
-          <img src="assets/Accueil.png" alt="Tsunami" />
-          <div class="project-overlay">
-            <a href="https://lookerstudio.google.com/u/0/reporting/b71bf52d-cc0b-4869-bf8b-66f0d56225fd" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="https://github.com/falendrir/Tsunami" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Tsunami</h3>
-          <p>Analyse Data + Dashboard + Machine Learning pour identifier le prochain manga à adapter en animé.</p>
-          <div class="project-tags"><span>BigQuery</span><span>DBT</span><span>Looker</span><span>Python</span></div>
-        </div>
-      </div>
-
-      <div class="project-card" data-tilt data-category="pbi">
-        <div class="project-img">
-          <img src="assets/img_superstore.png" alt="Superstore" />
-          <div class="project-overlay">
-            <a href="assets/Dash.pbix" download class="btn btn--small"><i class="fas fa-download"></i> .pbix</a>
-            <a href="https://github.com/falendrir/superstore" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Superstore</h3>
-          <p>Ce projet est une exploration analytique du dataset Superstore Sales téléchargé depuis Kaggle.</p>
-          <div class="project-tags"><span>PostgreSQL</span><span>Sql</span><span>PowerBi</span><span>Kaggle</span></div>
-        </div>
-      </div>
-
-      <!--div class="project-card" data-tilt data-category="tool">
-        <div class="project-img">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='170' cy='50' r='35' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='250' cy='140' r='22' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP3%3C/text%3E%3C/svg%3E" alt="Project 3" />
-          <div class="project-overlay">
-            <a href="#" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="#" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>URL Shortener</h3>
-          <p>A lightweight URL shortening service with analytics dashboard.</p>
-          <div class="project-tags"><span>Vue.js</span><span>Express</span><span>Redis</span></div>
-        </div>
-      </div-->
-
-      <!--div class="project-card" data-tilt data-category="web">
-        <div class="project-img">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='60' cy='70' r='28' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='340' cy='130' r='38' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP4%3C/text%3E%3C/svg%3E" alt="Project 4" />
-          <div class="project-overlay">
-            <a href="#" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="#" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Social Media Dashboard</h3>
-          <p>Centralised analytics dashboard pulling data from multiple social APIs.</p>
-          <div class="project-tags"><span>React</span><span>Chart.js</span><span>REST API</span></div>
-        </div>
-      </div-->
-
-      <!--div class="project-card" data-tilt data-category="tool">
-        <div class="project-img">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='100' cy='55' r='22' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='300' cy='150' r='30' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP5%3C/text%3E%3C/svg%3E" alt="Project 5" />
-          <div class="project-overlay">
-            <a href="#" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="#" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Markdown Editor</h3>
-          <p>Live-preview markdown editor with syntax highlighting and export options.</p>
-          <div class="project-tags"><span>TypeScript</span><span>Electron</span><span>CodeMirror</span></div>
-        </div>
-      </div-->
-
-      <!--div class="project-card" data-tilt data-category="app">
-        <div class="project-img">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23242a35'/%3E%3Ccircle cx='140' cy='65' r='32' fill='none' stroke='%23ff9800' stroke-width='1.5' opacity='.25'/%3E%3Ccircle cx='270' cy='140' r='26' fill='none' stroke='%23ff9800' stroke-width='1' opacity='.15'/%3E%3Crect x='160' y='70' width='80' height='60' rx='8' fill='%233a4258' opacity='.7'/%3E%3Ctext x='200' y='108' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23ff9800' opacity='.8'%3EP6%3C/text%3E%3C/svg%3E" alt="Project 6" />
-          <div class="project-overlay">
-            <a href="#" target="_blank" class="btn btn--small"><i class="fas fa-eye"></i> Live</a>
-            <a href="#" target="_blank" class="btn btn--small"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-info">
-          <h3>Weather App</h3>
-          <p>Beautiful weather application with geolocation and 7-day forecasts.</p>
-          <div class="project-tags"><span>React Native</span><span>OpenWeather</span><span>GPS</span></div>
-        </div>
-      </div-->
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ EDUCATION ═══ -->
-<section id="education" class="section section--alt">
-  <div class="container">
-    <h2 class="section-title">Education</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">2025 – 2025</span>
-          <h3>Concepteur développeur en intelligence artificielle et analyse big data - Niveau 6</h3>
-          <p class="timeline-place">LE WAGON, Paris</p>
-          <ul>
-            <li>Bootcamp intensif Data Science (9 semaines) – Python, SQL, Pandas, Numpy, Matplotlib, Seaborn, Scikit-learn ; collaboration avec Git et DBT.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">2016 – 2017</span>
-          <h3>Business entreprenariat international</h3>
-          <p class="timeline-place">UNIVERSITÉ LAVAL, Quebec</p>
-          <ul>
-            <li>Entrepreneur et entrepreneuriat, apprendre à entreprendre, réaliser son business plan, séminaire en entrepreneuriat, le monde des affaires en Amérique du Nord.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <span class="timeline-date">2016 – 2017</span>
-          <h3>Bachelor : Business and management</h3>
-          <p class="timeline-place">INSTITUT SUP. DE GESTION, Toulouse</p>
-          <ul>
-            <li>Année tournée vers l'international avec un parcours mixte : 50% France, 50% international.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section id="contact" class="section">
-  <div class="container">
-    <h2 class="section-title">Contact</h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Localisation</h4><p>Tremblay-en-France, France</p></div></div>
-        <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p><a href="mailto:franck.rahon@gmail.com">franck.rahon@gmail.com</a></p></div></div>
-        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Téléphone</h4><p>+33 6 42 29 52 99</p></div></div>
-      </div>
-      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="5d850cc3-e25a-41fb-b4b2-5835a6621f87">
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nom</label>
-            <input type="text" name="name" placeholder="Votre nom" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="you@email.com" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Sujet</label>
-          <input type="text" name="subject" placeholder="Comment puis-je vous aider?" required />
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea name="message" rows="5" placeholder="Votre message…" required></textarea>
-        </div>
-        <button type="submit" class="btn btn--primary">
-          <i class="fas fa-paper-plane"></i> Envoyer le message
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer class="footer">
-  <div class="footer-social">
-    <a href="https://github.com/falendrir" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/franck-rahon" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <!-- a href="#" target="_blank"><i class="fab fa-twitter"></i></a-->
-    <a href="mailto:franck.rahon@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-  </div>
-  <p class="footer-text">&copy; <span id="footerYear"></span> Franck RAHON. All rights reserved.</p>
+<footer style="background: #0E161E; color: #A9B3BF; font-size: 14px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px">
+<span>© <span id="footerYear">2026</span> Franck RAHON</span>
+<span style="font-family: 'IBM Plex Mono', monospace">De la donnée brute à la décision métier</span>
+</div>
 </footer>
 
-<!-- ═══ BACK TO TOP ═══ -->
-<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+</div>
 
-<!-- ═══════════════════════════════════════════════════════
-     ALL JAVASCRIPT — INLINE
-     ═══════════════════════════════════════════════════════ -->
 <script>
-// ─────────────────────────────────────────────
-// PARTICLES
-// ─────────────────────────────────────────────
-(function(){
-  var canvas=document.createElement('canvas'),
-      ctx=canvas.getContext('2d'),
-      container=document.getElementById('particles-container');
-  container.appendChild(canvas);
-  var W,H,particles=[],mouse={x:-9999,y:-9999};
-  var CFG={count:70,color:'255,152,0',r:2.2,linkDist:140,linkColor:'255,152,0',linkOp:.12,speed:.4,mouseR:150};
-
-  function resize(){W=canvas.width=container.clientWidth;H=canvas.height=container.clientHeight;}
-  function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*CFG.speed;this.vy=(Math.random()-.5)*CFG.speed;this.r=CFG.r+Math.random()*1.2;this.a=.35+Math.random()*.45;}
-  function init(){particles=[];for(var i=0;i<CFG.count;i++)particles.push(new P());}
-  function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy);}
-
-  function update(){
-    particles.forEach(function(p){
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      var d=dist(p,mouse);
-      if(d<CFG.mouseR&&d>0){var f=(CFG.mouseR-d)/CFG.mouseR*.06;p.x+=(p.x-mouse.x)/d*f*20;p.y+=(p.y-mouse.y)/d*f*20;}
-    });
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<particles.length;i++)for(var j=i+1;j<particles.length;j++){
-      var d=dist(particles[i],particles[j]);
-      if(d<CFG.linkDist){ctx.beginPath();ctx.strokeStyle='rgba('+CFG.linkColor+','+(CFG.linkOp*(1-d/CFG.linkDist))+')';ctx.lineWidth=1;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
-    }
-    particles.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba('+CFG.color+','+p.a+')';ctx.fill();});
-  }
-  function loop(){update();draw();requestAnimationFrame(loop);}
-
-  window.addEventListener('resize',function(){resize();init();});
-  container.addEventListener('mousemove',function(e){var r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
-  container.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999;});
-  resize();init();loop();
-})();
-
-// ─────────────────────────────────────────────
-// VANILLA TILT
-// ─────────────────────────────────────────────
-(function(){
-  function VT(el){
-    this.el=el;this.max=12;this.speed=300;
-    el.addEventListener('mousemove',this._move.bind(this));
-    el.addEventListener('mouseleave',this._leave.bind(this));
-    el.addEventListener('mouseenter',function(){el.style.transition='none';});
-  }
-  VT.prototype._move=function(e){
-    var r=this.el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,cx=r.width/2,cy=r.height/2;
-    var rx=this.max*(y-cy)/cy,ry=-this.max*(x-cx)/cx;
-    this.el.style.transform='perspective(1000px) rotateX('+rx+'deg) rotateY('+ry+'deg) scale3d(1.03,1.03,1.03)';
-  };
-  VT.prototype._leave=function(){
-    this.el.style.transition='transform '+this.speed+'ms ease';
-    this.el.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)';
-  };
-  document.addEventListener('DOMContentLoaded',function(){
-    document.querySelectorAll('[data-tilt]').forEach(function(el){new VT(el);});
-  });
-})();
-
-// ─────────────────────────────────────────────
-// MAIN
-// ─────────────────────────────────────────────
-(function(){
-  // Splash
-  window.addEventListener('load',function(){document.getElementById('splash').classList.add('hidden');});
-
-  // Footer year
-  document.getElementById('footerYear').textContent=new Date().getFullYear();
-
-  // Navbar scroll + active link
-  var navbar=document.getElementById('navbar');
-  var navLinks=document.querySelectorAll('.nav-link');
-  var sections=document.querySelectorAll('section[id]');
-
-  window.addEventListener('scroll',function(){
-    navbar.classList.toggle('scrolled',window.scrollY>50);
-    var current='';
-    sections.forEach(function(s){if(window.scrollY>=s.offsetTop-200)current=s.getAttribute('id');});
-    navLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
-    document.getElementById('backToTop').classList.toggle('visible',window.scrollY>600);
-  });
-
-  // Mobile nav
-  var navToggle=document.getElementById('navToggle');
-  var navLinksEl=document.getElementById('navLinks');
-  navToggle.addEventListener('click',function(){navToggle.classList.toggle('active');navLinksEl.classList.toggle('open');});
-  navLinksEl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navToggle.classList.remove('active');navLinksEl.classList.remove('open');});});
-
-  // Back to top
-  document.getElementById('backToTop').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-
-  // Role typer
-  (function(){
-    var roles=['Data analyst','Financial Data Analyst','Data & BI Analyst', 'Data Analyst (Python, Excel, SQL)','Analytics Engineer'];
-    var el=document.getElementById('roleTyper');
-    var ri=0,ci=0,del=false,delay=120;
-    function type(){
-      var cur=roles[ri];
-      if(del){el.textContent=cur.substring(0,ci--);if(ci<0){del=false;ri=(ri+1)%roles.length;ci=0;delay=500;}else delay=55;}
-      else{el.textContent=cur.substring(0,ci++);if(ci>cur.length){del=true;delay=1400;}else delay=120;}
-      setTimeout(type,delay);
-    }
-    type();
-  })();
-
-  // Scroll reveal + skill bars
-  (function(){
-    var targets=document.querySelectorAll('.about-grid,.skill-card,.timeline-item,.project-card,.achievement-card,.contact-item,.contact-form,.section-title,.portfolio-filters');
-    targets.forEach(function(el){el.classList.add('reveal');});
-
-    function animateBar(card){
-      var bar=card.querySelector('.skill-bar');
-      if(!bar||bar.dataset.animated)return;
-      bar.dataset.animated='1';
-      var w=bar.dataset.width||'0';
-      bar.style.width='0';
-      requestAnimationFrame(function(){requestAnimationFrame(function(){bar.style.width=w+'%';});});
-    }
-
-    if('IntersectionObserver' in window){
-      var obs=new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-            if(entry.target.classList.contains('skill-card'))animateBar(entry.target);
-          }
-        });
-      },{threshold:.15});
-      targets.forEach(function(el){obs.observe(el);});
-    } else {
-      function check(){
-        var wH=window.innerHeight;
-        targets.forEach(function(el){
-          if(el.getBoundingClientRect().top<wH-80){
-            el.classList.add('visible');
-            if(el.classList.contains('skill-card'))animateBar(el);
-          }
-        });
-      }
-      window.addEventListener('scroll',check);check();
-    }
-  })();
-
-  // Portfolio filters
-  (function(){
-    var btns=document.querySelectorAll('.filter-btn');
-    var cards=document.querySelectorAll('.project-card');
-    btns.forEach(function(btn){
-      btn.addEventListener('click',function(){
-        btns.forEach(function(b){b.classList.remove('active');});btn.classList.add('active');
-        var f=btn.dataset.filter;
-        cards.forEach(function(c){c.classList.toggle('hidden',f!=='all'&&c.dataset.category!==f);});
-      });
-    });
-  })();
-
-  // Contact form demo
-
-})();
+document.getElementById('footerYear').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
